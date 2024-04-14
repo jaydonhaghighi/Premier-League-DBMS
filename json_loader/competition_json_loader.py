@@ -1,8 +1,7 @@
 import json
-import psycopg  # Import the psycopg library
+import psycopg
 
 def load_data(file_path):
-    # Read JSON data from file
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
@@ -10,8 +9,6 @@ def load_data(file_path):
 def insert_data(data, connection_params):
     with psycopg.connect(**connection_params) as conn:
         with conn.cursor() as cur:
-            # Clear the table before inserting new entries using CASCADE to automatically truncate dependent tables
-            cur.execute("TRUNCATE TABLE competitions CASCADE;")
 
             insert_sql = '''
             INSERT INTO competitions (
@@ -39,7 +36,6 @@ def insert_data(data, connection_params):
                     item["match_available"]
                 ))
 
-            # Commit changes to the database
             conn.commit()
             print("Data has been successfully loaded into the database.")
 
@@ -48,18 +44,18 @@ def insert_data(data, connection_params):
 # def fetch_data(connection_params):
 #     with psycopg.connect(**connection_params) as conn:
 #         with conn.cursor() as cur:
-#             # Query to select all data from competitions table
+#             
 #             cur.execute("SELECT * FROM competitions;")
             
-#             # Fetch all rows from the database
+#             
 #             rows = cur.fetchall()
             
-#             # Print the rows
+#             
 #             for row in rows:
 #                 print(row)
 
 if __name__ == "__main__":
-    # File path to the JSON data
+    
     file_path = 'open-data-master/data/competitions.json'
 
     # Database connection parameters

@@ -99,7 +99,7 @@ def main(directory_path, conn_params):
             if filename.endswith('.json'):
                 found_json = True
                 file_path = os.path.join(dirpath, filename)
-                print(f"Processing {filename} in {dirpath}...")  # Debug statement
+                print(f"Processing {filename} in {dirpath}...")
                 try:
                     load_data_to_db(file_path, conn_params)
                     print(f"Data from {filename} loaded successfully.")
@@ -107,7 +107,7 @@ def main(directory_path, conn_params):
                     print(f"Failed to load data from {filename}: {e}")
 
 if __name__ == "__main__":
-    directory_path = 'open-data-master/data/matches'  # Make sure this is the correct path
+    directory_path = 'open-data-master/data/matches'
     connection_params = {
         "dbname": "project_database",
         "user": "postgres",

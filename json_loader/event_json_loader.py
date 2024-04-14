@@ -389,8 +389,7 @@ def load_single_file_data(file_path, conn_params):
 
 # Main function to load data using multiple processes
 def load_event_data(file_paths, conn_params):
-    # Use a pool of worker processes to process files
-    with Pool(processes=4) as pool:  # Adjust number of processes according to your system
+    with Pool(processes=4) as pool:  
         pool.starmap(load_single_file_data, [(file_path, conn_params) for file_path in file_paths])
 
 def main(directory_path, conn_params):

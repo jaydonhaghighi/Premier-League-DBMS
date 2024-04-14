@@ -25,7 +25,6 @@ def load_data_to_db(file_path, conn_params):
                     jersey_number = player.get('jersey_number')
                     country_data = player.get('country', {})
 
-                    # Default values for country_id and country_name if 'country' key is missing
                     country_id = country_data.get('id')
                     country_name = country_data.get('name')
 
